@@ -29,6 +29,7 @@ pipeline {
        }
     }
 
+    //change ip everytime you restart your ec2 instance
     stage('Deploy-to-Tomcat'){
       steps{
         sshagent(['tomcat']){
