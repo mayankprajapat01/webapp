@@ -11,7 +11,15 @@ pipeline {
                     echo "M2_HOME = ${M2_HOME}"
             ''' 
       }
-    }   
+    }
+
+    // stage('Check-Git-Secrets'){
+    //   steps{
+    //     sh '''
+    //       docker run trufflesecurity/trufflehog git https://github.com/mayankprajapat01/webapp.git --json
+    //     '''
+    //   }
+    // }
    
     stage ('Build') {
       steps {
