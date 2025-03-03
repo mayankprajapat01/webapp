@@ -15,7 +15,10 @@ pipeline {
    
     stage ('Build') {
       steps {
-      sh 'mvn clean package'
+      sh '''
+                    export MAVEN_OPTS="--add-opens java.base/java.util=ALL-UNNAMED"
+                    mvn clean package
+         '''
        }
     }
   }    
