@@ -13,13 +13,13 @@ pipeline {
       }
     }
 
-    // stage('Check-Git-Secrets'){
-    //   steps{
-    //     sh '''
-    //       docker run trufflesecurity/trufflehog git https://github.com/mayankprajapat01/webapp.git --json
-    //     '''
-    //   }
-    // }
+    stage('Check-Git-Secrets'){
+      steps{
+        sh 'rm trufflehog || true'
+        sh 'docker run trufflesecurity/trufflehog git https://github.com/mayankprajapat01/webapp.git --json > trufflehog'
+        sh 'cat trufflehog'
+      }
+    }
    
     stage ('Build') {
       steps {
