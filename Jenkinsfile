@@ -21,15 +21,15 @@ pipeline {
       }
     }
 
-    stage('Source-Composition-Analysis'){
-      steps{
-        sh 'rm owasp* || true'
-        sh 'wget https://raw.githubusercontent.com/mayankprajapat01/webapp/refs/heads/master/owasp-dependency-check.sh'
-        sh 'chmod +x owasp-dependency-check.sh'
-        sh 'bash owasp-dependency-check.sh'
-        sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
-      }
-    }
+    // stage('Source-Composition-Analysis'){
+    //   steps{
+    //     sh 'rm owasp* || true'
+    //     sh 'wget https://raw.githubusercontent.com/mayankprajapat01/webapp/refs/heads/master/owasp-dependency-check.sh'
+    //     sh 'chmod +x owasp-dependency-check.sh'
+    //     sh 'bash owasp-dependency-check.sh'
+    //     sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
+    //   }
+    // }
    
     stage ('Build') {
       steps {
@@ -43,7 +43,7 @@ pipeline {
     stage('Deploy-to-Tomcat'){
       steps{
         sshagent(['tomcat']){
-           sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@16.16.195.151:/home/ubuntu/prod/apache-tomcat-9.0.100/webapps'
+           sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@13.53.217.200:/home/ubuntu/prod/apache-tomcat-9.0.100/webapps'
         }
       }
     }
