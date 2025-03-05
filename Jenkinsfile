@@ -23,9 +23,8 @@ pipeline {
 
     stage('Source-Composition-Analysis'){
       steps{
-        sh '''  dependencyCheck additionalArguments: "--project WORKSPACE", odcInstallation: "SCA" 
-                dependencyCheckPublisher pattern: "dependency-check-report.xml" 
-        '''
+        dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP-Check'
+        dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
       }
     }
    
