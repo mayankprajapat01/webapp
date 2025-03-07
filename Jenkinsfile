@@ -23,7 +23,7 @@ pipeline {
 
     stage('Source-Composition-Analysis'){
       steps{
-        dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP-Check'
+        dependencyCheck additionalArguments: '--scan ./ --noupdate', odcInstallation: 'DP-Check'
         dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
       }
     }
