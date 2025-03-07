@@ -21,12 +21,12 @@ pipeline {
       }
     }
 
-    // stage('Source-Composition-Analysis'){
-    //   steps{
-    //     dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP-Check'
-    //     dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-    //   }
-    // }
+    stage('Source-Composition-Analysis'){
+      steps{
+        dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP-Check'
+        dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+      }
+    }
    
     stage ('Build') {
       steps {
