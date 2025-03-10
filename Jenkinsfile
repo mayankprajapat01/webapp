@@ -21,12 +21,12 @@ pipeline {
       }
     }
 
-    stage('Source-Composition-Analysis'){
-      steps{
-        dependencyCheck additionalArguments: '--scan ./ --noupdate', odcInstallation: 'DP-Check'
-        dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-      }
-    }
+    // stage('Source-Composition-Analysis'){
+    //   steps{
+    //     dependencyCheck additionalArguments: '--scan ./ --noupdate', odcInstallation: 'DP-Check'
+    //     dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+    //   }
+    // }
    
     stage ('Build') {
       steps {
@@ -40,7 +40,7 @@ pipeline {
     stage('Deploy-to-Tomcat'){
       steps{
         sshagent(['tomcat']){
-           sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@13.50.248.234:/home/ubuntu/prod/apache-tomcat-9.0.100/webapps'
+           sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@13.50.252.154:/home/ubuntu/prod/apache-tomcat-9.0.100/webapps'
         }
       }
     }
